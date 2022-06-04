@@ -24,14 +24,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late GoogleMapController _controller;
+  final _shweDaGonLatLng = const LatLng(16.798649450442266, 96.14954955557084);
   final _initialCameraPosition = const CameraPosition(
-    target: LatLng(
-      1.4146019918043515,
-      103.794310731327,
-    ),
-    zoom: 10,
-  );
+      target: LatLng(1.4146019918043515, 103.794310731327), zoom: 11);
+
+  late GoogleMapController _controller;
+  MapType _mapType = MapType.normal;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +41,13 @@ class _HomeState extends State<Home> {
         children: [
           GoogleMap(
             initialCameraPosition: _initialCameraPosition,
+            mapType: _mapType,
             onMapCreated: (controller) {
               _controller = controller;
             },
           ),
+
+          // zoom in/ out
           Positioned(
             top: 7,
             right: 7,
@@ -74,7 +75,50 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-          )
+          ),
+
+          // mapType
+          Positioned(
+            bottom: 7,
+            left: 7,
+            child: Container(
+              color: Colors.blue.withOpacity(0.4),
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    if (_mapType == MapType.normal) {
+                      _mapType = MapType.hybrid;
+                    } else {
+                      _mapType = MapType.normal;
+                    }
+                  });
+                },
+                icon: const Icon(Icons.satellite_alt_outlined),
+              ),
+            ),
+          ),
+
+          // moveCamera/ newCameraPosition
+          Positioned(
+            top: 7,
+            left: 7,
+            child: Container(
+              color: Colors.blue.withOpacity(0.4),
+              child: IconButton(
+                onPressed: () {
+                  _controller.moveCamera(
+                    CameraUpdate.newCameraPosition(
+                      CameraPosition(
+                        target: _shweDaGonLatLng,
+                        zoom: 14,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.temple_buddhist),
+              ),
+            ),
+          ),
         ],
       ),
     );
