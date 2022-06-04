@@ -24,6 +24,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late GoogleMapController _controller;
   final _initialCameraPosition = const CameraPosition(
     target: LatLng(
       1.4146019918043515,
@@ -38,7 +39,44 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('Google Map Flutteer'),
       ),
-      body: GoogleMap(initialCameraPosition: _initialCameraPosition),
+      body: Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: _initialCameraPosition,
+            onMapCreated: (controller) {
+              _controller = controller;
+            },
+          ),
+          Positioned(
+            top: 7,
+            right: 7,
+            child: Container(
+              color: Colors.blue.withOpacity(0.4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      _controller.animateCamera(
+                        CameraUpdate.zoomIn(),
+                      );
+                    },
+                    icon: const Icon(Icons.add),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      _controller.animateCamera(
+                        CameraUpdate.zoomOut(),
+                      );
+                    },
+                    icon: const Icon(Icons.remove),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
