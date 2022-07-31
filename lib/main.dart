@@ -24,12 +24,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _shweDaGonLatLng = const LatLng(16.798649450442266, 96.14954955557084);
   final _initialCameraPosition = const CameraPosition(
       target: LatLng(1.4146019918043515, 103.794310731327), zoom: 11);
 
   late GoogleMapController _controller;
+
   MapType _mapType = MapType.normal;
+  final _shweDaGonLatLng = const LatLng(16.798649450442266, 96.14954955557084);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class _HomeState extends State<Home> {
             initialCameraPosition: _initialCameraPosition,
             mapType: _mapType,
             onMapCreated: (controller) {
+              // TODO: controller is important
               _controller = controller;
             },
           ),
