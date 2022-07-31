@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## @1 google map
+@1 google map
 
 - Google map widget ထည့်တဲ့နည်းကိုလေ့လာသွားမှာဖြစ်ပါတယ်။
 - https://console.cloud.google.com > Navigation Menu > APIs & service > Project(Library) > Maps SDK for Android > enable
@@ -22,9 +22,9 @@ iOS
 1. To set up, specify your API key in the application delegate ios/Runner/AppDelegate.swift:
 
 @2 Google map widget
-Google map widget ထည့်တဲ့နည်းကိုလေ့လာသွားမှာဖြစ်ပါတယ်။
 
-# Mind Controller
+- Google map widget ထည့်တဲ့နည်းကိုလေ့လာသွားမှာဖြစ်ပါတယ်။
+- Mind Controller
 
 @3 google map controller
 
