@@ -24,8 +24,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _initialCameraPosition = const CameraPosition(
-      target: LatLng(1.4146019918043515, 103.794310731327), zoom: 11);
+  final _initialCameraPosition =
+      const CameraPosition(target: LatLng(16.826587, 96.130196), zoom: 17);
 
   late GoogleMapController _controller;
 
@@ -43,9 +43,21 @@ class _HomeState extends State<Home> {
           GoogleMap(
             initialCameraPosition: _initialCameraPosition,
             mapType: _mapType,
+            myLocationEnabled: true,
             onMapCreated: (controller) {
               // TODO: controller is important
               _controller = controller;
+            },
+            markers: {
+              Marker(
+                markerId: const MarkerId("marker1"),
+                position: const LatLng(16.826587, 96.130196),
+                draggable: true,
+                onDragEnd: (value) {
+                  // value is the new position
+                },
+                // To do: custom marker icon
+              ),
             },
           ),
 
